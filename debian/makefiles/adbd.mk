@@ -36,7 +36,7 @@ SRCS+= centraldir.c
 SRCS+= zipfile.c
 
 
-CPPFLAGS+= -O2 -g -Wall -Wno-unused-parameter
+CPPFLAGS+= -Os -s -Wall -Wno-unused-parameter -mcpu=cortex-a7 -mthumb
 CPPFLAGS+= -DADB_HOST=0 -DHAVE_FORKEXEC=1 -D_XOPEN_SOURCE -D_GNU_SOURCE -DALLOW_ADBD_ROOT=1
 CPPFLAGS+= -DHAVE_SYMLINKS -DBOARD_ALWAYS_INSECURE
 CPPFLAGS+= -DHAVE_TERMIO_H
@@ -44,7 +44,7 @@ CPPFLAGS+= -DADBD_NON_ANDROID
 CPPFLAGS+= -I$(SRCDIR)/core/adbd
 CPPFLAGS+= -I$(SRCDIR)/core/include
 
-LIBS+= -lc -lpthread -lz `pkg-config --libs libcrypto` -lcrypt
+LIBS+= -lc -lpthread -lz -l:libcrypto.a -l:libcrypt.a -latomic -ldl
 
 OBJS= $(patsubst %, %.o, $(basename $(SRCS)))
 
