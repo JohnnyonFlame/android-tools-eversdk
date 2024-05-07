@@ -33,6 +33,7 @@
 
 #include <sys/ioctl.h>
 #include <sys/stat.h>
+#include <sys/sysmacros.h>
 #include <sys/types.h>
 #include <dirent.h>
 #include <fcntl.h>

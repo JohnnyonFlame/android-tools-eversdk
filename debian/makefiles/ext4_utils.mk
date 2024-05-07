@@ -1,6 +1,7 @@
 # Makefile for ext4_utils; based on https://heiher.info/2227.html
 # Author: Dmitrijs Ledkovs <xnox@ubuntu.com>
 
+VPATH+=$(SRCDIR)/extras/ext4_utils
 SRCS+=make_ext4fs.c
 SRCS+=ext4fixup.c
 SRCS+=ext4_utils.c
@@ -13,7 +14,7 @@ SRCS+=sha1.c
 SRCS+=wipe.c
 SRCS+=crc16.c
 
-VPATH+=../../core/libsparse
+VPATH+=$(SRCDIR)/core/libsparse
 SRCS+= backed_block.c
 SRCS+= sparse_crc32.c
 SRCS+= sparse.c
@@ -31,10 +32,9 @@ SRCS+=img2simg.c
 SRCS+=simg2img.c
 SRCS+=simg2simg.c
 
-CPPFLAGS+= -I.
-CPPFLAGS+= -I/usr/include
-CPPFLAGS+= -I../../core/include
-CPPFLAGS+= -I../../core/libsparse/include/
+CPPFLAGS+= -I$(SRCDIR)
+CPPFLAGS+= -I$(SRCDIR)/core/include
+CPPFLAGS+= -I$(SRCDIR)/core/libsparse/include/
 
 LIBS+= -lz -lselinux
 

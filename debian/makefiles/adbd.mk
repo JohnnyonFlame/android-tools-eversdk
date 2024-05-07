@@ -1,18 +1,6 @@
 # Makefile for adbd
 
-VPATH+= ../libcutils
-SRCS+= abort_socket.c
-SRCS+= socket_inaddr_any_server.c
-SRCS+= socket_local_client.c
-SRCS+= socket_local_server.c
-SRCS+= socket_loopback_client.c
-SRCS+= socket_loopback_server.c
-SRCS+= socket_network_client.c
-SRCS+= list.c
-SRCS+= load_file.c
-SRCS+= android_reboot.c
-
-#VPATH+= ../adb
+VPATH+= $(SRCDIR)/core/adbd
 SRCS+=  adb.c
 SRCS+=	backup_service.c
 SRCS+=	fdevent.c
@@ -31,7 +19,19 @@ SRCS+=	log_service.c
 SRCS+=	utils.c
 SRCS+=	base64.c
 
-VPATH+= ../libzipfile
+VPATH+= $(SRCDIR)/core/libcutils
+SRCS+= abort_socket.c
+SRCS+= socket_inaddr_any_server.c
+SRCS+= socket_local_client.c
+SRCS+= socket_local_server.c
+SRCS+= socket_loopback_client.c
+SRCS+= socket_loopback_server.c
+SRCS+= socket_network_client.c
+SRCS+= list.c
+SRCS+= load_file.c
+SRCS+= android_reboot.c
+
+VPATH+= $(SRCDIR)/core/libzipfile
 SRCS+= centraldir.c
 SRCS+= zipfile.c
 
@@ -40,12 +40,11 @@ CPPFLAGS+= -O2 -g -Wall -Wno-unused-parameter
 CPPFLAGS+= -DADB_HOST=0 -DHAVE_FORKEXEC=1 -D_XOPEN_SOURCE -D_GNU_SOURCE -DALLOW_ADBD_ROOT=1
 CPPFLAGS+= -DHAVE_SYMLINKS -DBOARD_ALWAYS_INSECURE
 CPPFLAGS+= -DHAVE_TERMIO_H
-CPPFLAGS+= -I.
-CPPFLAGS+= -I../include
-CPPFLAGS+= -I../../../external/zlib
-CPPFLAGS+= `pkg-config --cflags glib-2.0 gio-2.0`
+CPPFLAGS+= -DADBD_NON_ANDROID
+CPPFLAGS+= -I$(SRCDIR)/core/adbd
+CPPFLAGS+= -I$(SRCDIR)/core/include
 
-LIBS+= -lc -lpthread -lz -lcrypto -lcrypt `pkg-config --libs glib-2.0 gio-2.0`
+LIBS+= -lc -lpthread -lz `pkg-config --libs libcrypto` -lcrypt
 
 OBJS= $(patsubst %, %.o, $(basename $(SRCS)))
 

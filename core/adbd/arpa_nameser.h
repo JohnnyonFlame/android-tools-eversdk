@@ -52,6 +52,8 @@
 
 #ifndef _ARPA_NAMESER_H_
 #define _ARPA_NAMESER_H_
+#ifndef _ARPA_NAMESER_H
+#define _ARPA_NAMESER_H
 
 #define BIND_4_COMPAT
 
@@ -574,4 +576,5 @@ __END_DECLS
 #define  XLOG(...)   do {} while (0)
 #endif
 
+#endif /* !_ARPA_NAMESER_H */
 #endif /* !_ARPA_NAMESER_H_ */

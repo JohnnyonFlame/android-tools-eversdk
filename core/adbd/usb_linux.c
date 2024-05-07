@@ -20,6 +20,7 @@
 #include <string.h>
 
 #include <sys/ioctl.h>
+#include <sys/sysmacros.h>
 #include <sys/types.h>
 #include <sys/time.h>
 #include <dirent.h>

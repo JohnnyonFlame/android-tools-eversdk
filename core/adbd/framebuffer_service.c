@@ -26,6 +26,7 @@
 #include "fdevent.h"
 #include "adb.h"
 
+#include <cutils/fs.h>
 #include <linux/fb.h>
 #include <sys/ioctl.h>
 #include <sys/mman.h>

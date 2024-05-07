@@ -1165,7 +1165,6 @@ void build_local_name(char* target_str, size_t target_size, int server_port)
 
 #if !ADB_HOST
 static int should_drop_privileges() {
-    return 1;
 #ifndef ALLOW_ADBD_ROOT
     return 1;
 #else /* ALLOW_ADBD_ROOT */
